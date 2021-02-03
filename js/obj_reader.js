@@ -4,8 +4,8 @@ import { OBJLoader } from "https://threejsfundamentals.org/threejs/resources/thr
 import { MTLLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/MTLLoader.js";
 
 function main() {
-  const mtlFile = "obj/sonic/sonic.mtl";
-  const objFile = "obj/sonic/sonic.obj";
+  const mtlFile = "obj/model/model_normalized.mtl";
+  const objFile = "obj/model/model_normalized.obj";
 
   // const mtlFile = "obj/model_1/model_1.mtl";
   // const objFile = "obj/model_1/model_1.obj";
@@ -13,12 +13,12 @@ function main() {
   const canvas = document.querySelector("#c");
   const renderer = new THREE.WebGLRenderer({ canvas });
 
-  const fov = 45;
+  const fov = 1;
   const aspect = 2; // the canvas default
   const near = 0.1;
-  const far = 1000;
+  const far = 100;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 10, 20);
+  camera.position.set(-50, 10, 20);
 
   const controls = new OrbitControls(camera, canvas);
   controls.target.set(0, 0, 0); //sets initial location of the object
