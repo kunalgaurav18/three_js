@@ -1,0 +1,17 @@
+
+<html>
+    <head>
+        <script type="text/javascript">
+        function parseJson(){
+        var jsonObj = JSON.parse('<?= $folder_structure ?>');  
+        for (const [key, value] of Object.entries(jsonObj)) {
+        console.log(key, value);
+        }  
+        document.getElementById("data").innerHTML = jsonObj;
+        }
+        </script>
+        </head>
+        <body onload="parseJson()">
+            <p id="data">Hi</p>
+        </body>
+    </html
