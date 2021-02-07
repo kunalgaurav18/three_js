@@ -18,18 +18,6 @@ setTimeout(function () {
   });
 }, 1000);
 
-// function save() {
-//   var a = document.createElement("a");
-//   with (a) {
-//     href =
-//       "data:text/csv;base64," + btoa(document.getElementById("textarea").value);
-//     download = "csvfile.csv";
-//   }
-//   document.body.appendChild(a);
-//   a.click();
-//   document.body.removeChild(a);
-// }
-
 function next() {
   if (idx < objs.length) idx++;
   handle_objects(idx);

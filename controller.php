@@ -2,8 +2,6 @@
 
 $folder_structure = ReadFolderDirectory('data/');
 echo json_encode($folder_structure);
-// echo json_encode(array("abc"=>'successfuly registered'));
-
 
 function ReadFolderDirectory($dir)
 {
