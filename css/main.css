@@ -1,7 +1,6 @@
 html,
 body {
   margin: 0;
-  height: 100%;
 }
 #c {
   width: 100%;
@@ -10,13 +9,13 @@ body {
 }
 
 .mainArea {
-  top: 40px;
-  right: 70px;
+  margin: auto;
+  width: 70%;
 }
 
 .displayArea {
   float: left;
-  margin: auto;
+  margin: 20px auto;
   width: 200px;
   height: 600px;
   border: 3px solid black;
@@ -32,7 +31,7 @@ body {
 .animation {
   border: 3px solid black;
   margin: 10px auto;
-  height: 350px;
+  height: 362px;
   width: 600px;
   padding: 10px;
 }
