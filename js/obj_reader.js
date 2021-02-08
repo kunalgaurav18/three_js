@@ -3,9 +3,9 @@ import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources
 import { OBJLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/MTLLoader.js";
 
-function main() {
-  const mtlFile = "obj/model/model_normalized.mtl";
-  const objFile = "obj/model/model_normalized.obj";
+window.main = function main(objFile, mtlFile) {
+  // const mtlFile = "data/model_0/models/model_normalized.mtl";
+  // const objFile = "data/model_0/models/model_normalized.obj";
 
   // const mtlFile = "obj/model_1/model_1.mtl";
   // const objFile = "obj/model_1/model_1.obj";
@@ -67,19 +67,32 @@ function main() {
     return needResize;
   }
 
+  let flag = true;
   function render() {
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
     }
-
     renderer.render(scene, camera);
 
-    requestAnimationFrame(render);
+    if (flag) {
+      requestAnimationFrame(render);
+      console.log(flag);
+      // flag -= 1;
+    } else {
+      disposeObj();
+    }
+  }
+
+  function disposeObj() {
+    // scene = null;
+    // camera = null;
+    // renderer = null;
+    renderer && renderer.renderLists.dispose();
   }
 
   requestAnimationFrame(render);
-}
+};
 
-main();
+// main();
