@@ -1,42 +1,68 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3D Viewer</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <script type="module" src="js/obj_reader.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/save_data.js"></script>
-  </head>
-
-  <body>
-    <div class="animation">
-      <canvas id="c"></canvas>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>3D Viewer</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+        <script type="module" src="js/obj_reader.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/save_data.js"></script>
+    </head>
+    <body>
+        <div class="mainArea">
+            <div class="displayArea">
+                <h3>Instructions:</h3>
+                <ol>
+                    <li>Use ctrl + Mouse to move the object up/down.</li>
+                    <li>Use Mouse to rotate the object.</li>
+                    <li>You can add new labels.</li>
+                    <li>You can view existing labels and update them.</li>
+                </ol>
+                <br>
+                <br>
+                <h3>Objects Details:</h3>
+                <h5 id="objId">Object Id:</h5>
+                <h5>Labels:</h5>
+                <p id="existing_labels">Labels shown here (if any)
+                    <br>
+                </p>
+            </div>
+            <div class="objectArea">
+                <div class="animation">
+                    <canvas id="c"></canvas>
+                </div>
+                <div class="inputArea">
+                    <div>
+                        <textarea id="textarea" class="textArea" placeholder="Write your labels here, separate key words with a comma."></textarea>
+                    </div>
+                    <div class="radioArea">
+                        <!-- <input type="radio" id="local" name="radio" value="local" onclick = "enableTextArea();" disabled>Local Directory</input> -->
+                        <input
+                            type="radio"
+                            id="remote"
+                            name="radio"
+                            value="remote"
+                            onclick="enableTextArea();"
+                            checked
+                        >Remote Directory</input>
+                </div>
+                <!-- <div id="btngroupLocal" class="btngroupLocal">
+                  <label>Load .obj file </label>
+                  <input type="file" id="objFile" disabled/><br/>
+                  <label>Load .mtl file </label>
+                  <input type="file" id="mtlFile" disabled/><br/>
+                  <button id="load" class="button" onclick="load();" disabled>Load</button>
+                </div> -->
+                <div class="btnArea">
+                    <div class="btngroup">
+                        <button id="previous" class="button" onclick="prev();">Previous</button>
+                        <button id="save" class="button" onclick="save();">Save Labels</button>
+                        <button id="next" class="button" onclick="next();">next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="inputArea">
-        <div>
-          <textarea id="textarea" class="textarea" placeholder="Write your labels here, separate key words with a comma"></textarea>
-        </div>
-        <div class="radioArea">
-        <!-- <input type="radio" id="local" name="radio" value="local" onclick = "enableTextArea();" disabled>Local Directory</input> -->
-        <input type="radio" id="remote" name="radio" value="remote" onclick = "enableTextArea();" checked>Remote Directory</input>
-        </div>
-        <!-- <div id="btngroupLocal" class="btngroupLocal">
-          <label>Load .obj file </label>
-          <input type="file" id="objFile" disabled/><br/>
-          <label>Load .mtl file </label>
-          <input type="file" id="mtlFile" disabled/><br/>
-          <button id="load" class="button" onclick="load();" disabled>Load</button>
-        </div> -->
-        <div class="btnArea">
-          <div class="btngroup">
-            <button id="previous" class="button" onclick="prev();">Previous</button>
-            <button id="save" class="button" onclick="save();">Save Labels</button>
-            <button id="next" class="button" onclick="next();">next</button>
-          </div>
-        </div>
-    </div>
-  </body>
+</body>
 </html>

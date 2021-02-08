@@ -3,12 +3,23 @@ import { OrbitControls } from "https://threejsfundamentals.org/threejs/resources
 import { OBJLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/MTLLoader.js";
 
-window.main = function main(objFile, mtlFile) {
+window.main = function main(obj, mtl) {
   // const mtlFile = "data/model_0/models/model_normalized.mtl";
   // const objFile = "data/model_0/models/model_normalized.obj";
 
   // const mtlFile = "obj/model_1/model_1.mtl";
   // const objFile = "obj/model_1/model_1.obj";
+  let path;
+  let objFile = obj;
+  let mtlFile = mtl;
+  let url_string = window.location.href;
+  let url = new URL(url_string);
+  if (url.searchParams.get("path")) {
+    path = url.searchParams.get("path");
+    // let mtl = url.searchParams.get("mtl");
+    objFile = "data/" + path + "/models/model_normalized.obj";
+    mtlFile = "data/" + path + "/models/model_normalized.mtl";
+  }
 
   const canvas = document.querySelector("#c");
   const renderer = new THREE.WebGLRenderer({ canvas });
@@ -73,13 +84,19 @@ window.main = function main(objFile, mtlFile) {
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
     }
-
     renderer.render(scene, camera);
 
     requestAnimationFrame(render);
   }
 
+  function disposeObj() {
+    // scene = null;
+    // camera = null;
+    // renderer = null;
+    renderer && renderer.renderLists.dispose();
+  }
+
   requestAnimationFrame(render);
 };
 
-// main();
+main(null, null);
