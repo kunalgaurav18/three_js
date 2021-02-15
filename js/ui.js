@@ -7,11 +7,6 @@ if (url.searchParams.get("idx")) {
   idx = parseInt(url.searchParams.get("idx"));
 }
 
-// function enableTextArea() {
-//   var el = document.getElementById("local");
-//   document.getElementById("btngroupLocal").disabled = !el.checked;
-// }
-
 setTimeout(function () {
   $.ajax({
     url: "controller.php",
@@ -25,7 +20,7 @@ setTimeout(function () {
 }, 1000);
 
 function next() {
-  // localStorage.setItem("flag", false);
+  save();
   if (idx < objs.length - 1) {
     idx++;
     window.location.href =
@@ -34,11 +29,10 @@ function next() {
       "&path=" +
       objs[idx][0];
   }
-  // load_3d_object(idx, true);
 }
 
 function prev() {
-  // localStorage.setItem("flag", false);
+  save();
   if (idx > 0) {
     idx--;
     window.location.href =
@@ -81,5 +75,24 @@ function retrieve_model_info(obj_path) {
 
   response.fail(function (jqXHR, textStatus) {
     console.log("Ajax retrive Request failed: " + textStatus);
+  });
+}
+
+function save() {
+  var mapping_data = document.getElementById("textarea").value;
+  console.log(mapping_data);
+
+  var response = $.ajax({
+    url: "save_data.php",
+    type: "POST",
+    data: { mapping_data: mapping_data },
+  });
+
+  response.done(function (msg) {
+    console.log("Ajax Success: " + msg);
+  });
+
+  response.fail(function (jqXHR, textStatus) {
+    console.log("Ajax Request failed: " + textStatus);
   });
 }

@@ -4,11 +4,6 @@ import { OBJLoader } from "https://threejsfundamentals.org/threejs/resources/thr
 import { MTLLoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/MTLLoader.js";
 
 window.main = function main(obj, mtl) {
-  // const mtlFile = "data/model_0/models/model_normalized.mtl";
-  // const objFile = "data/model_0/models/model_normalized.obj";
-
-  // const mtlFile = "obj/model_1/model_1.mtl";
-  // const objFile = "obj/model_1/model_1.obj";
   let path;
   let objFile = obj;
   let mtlFile = mtl;
@@ -39,8 +34,8 @@ window.main = function main(obj, mtl) {
   scene.background = new THREE.Color("white");
 
   {
-    const skyColor = 0xb1e1ff; // light blue
-    const groundColor = 0xb97a20; // brownish orange
+    const skyColor = 0xb1e1ff;
+    const groundColor = 0xb97a20;
     const intensity = 1;
     const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
     scene.add(light);
@@ -67,6 +62,11 @@ window.main = function main(obj, mtl) {
     });
   }
 
+  {
+    var axis = new THREE.AxesHelper(20);
+    scene.add(axis);
+  }
+
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
     const width = canvas.clientWidth;
@@ -84,17 +84,20 @@ window.main = function main(obj, mtl) {
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
     }
-    renderer.render(scene, camera);
+    let canv = renderer.domElement;
 
+    var vector = camera.position.clone();
+    console.log(vector);
+
+    renderer.render(scene, camera);
+    var box = new THREE.Box3().setFromObject(scene);
+    console.log(box.min, box.max, box.getSize());
     requestAnimationFrame(render);
   }
 
-  function disposeObj() {
-    // scene = null;
-    // camera = null;
-    // renderer = null;
-    renderer && renderer.renderLists.dispose();
-  }
+  // function disposeObj() {
+  //   renderer && renderer.renderLists.dispose();
+  // }
 
   requestAnimationFrame(render);
 };
