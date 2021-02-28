@@ -1,6 +1,7 @@
 <?php
+$configs = include('config.php');
 
-$folder_structure = ReadFolderDirectory('data/');
+$folder_structure = ReadFolderDirectory($configs->data_dir);
 echo json_encode($folder_structure);
 
 function ReadFolderDirectory($dir)
